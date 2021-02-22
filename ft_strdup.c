@@ -1,29 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vloth <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/16 15:36:01 by vloth             #+#    #+#             */
-/*   Updated: 2021/02/21 11:35:37 by vloth            ###   ########.fr       */
+/*   Created: 2021/02/21 10:16:14 by vloth             #+#    #+#             */
+/*   Updated: 2021/02/22 16:23:03 by vloth            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncat(char *dest, char *src, unsigned int nb)
+#include <stdio.h>
+#include <stdlib.h>
+
+int		ft_strlen(char *str)
 {
-	unsigned int i;
-	unsigned int n;
+	int i;
 
 	i = 0;
-	while (dest[i])
+	while (str[i])
 		i++;
-	n = 0;
-	while (src[n] && n < nb)
+	return (i);
+}
+
+char	*ft_strcpy(char *dest, char *src)
+{
+	int i;
+
+	i = 0;
+	while (src[i] != '\0')
 	{
-		dest[i + n] = src[n];
-		n++;
+		dest[i] = src[i];
+		i++;
 	}
-	dest[i + n] = '\0';
+	dest[i] = '\0';
 	return (dest);
+}
+
+char	*ft_strdup(char *src)
+{
+	char *dest;
+
+	dest = (char*)malloc(sizeof(char) * (ft_strlen(src) + 1));
+	if (dest == NULL)
+		return (NULL);
+	return (ft_strcpy(dest, src));
 }
